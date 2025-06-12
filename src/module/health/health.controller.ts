@@ -1,7 +1,8 @@
 import { Controller, Get, Res } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 
+@ApiBearerAuth()
 @ApiTags('Health check')
 @Controller('health')
 export class HealthController {
