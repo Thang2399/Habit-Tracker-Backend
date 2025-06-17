@@ -9,10 +9,10 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { Habit, HabitDocument } from '../../schema/habit.schema';
 import { Model } from 'mongoose';
-import { CreateHabitDto } from '../../dto/create-habit.dto';
+import { CreateHabitDto } from '../../dto/habit/create-habit.dto';
 import { Response } from 'express';
 import { IUser } from '../../interface/user';
-import { UpdateHabitDto } from '../../dto/update-habit.dto';
+import { UpdateHabitDto } from '../../dto/habit/update-habit.dto';
 
 @Injectable()
 export class HabitService {

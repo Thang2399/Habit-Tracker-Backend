@@ -4,8 +4,8 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
   HabitFrequencyEnum,
   HabitFrequencyPeriodEnum,
-} from '../enum/habit.enum';
-import { IHabit } from '../interface/habit';
+} from '../../enum/habit.enum';
+import { IHabit } from '../../interface/habit';
 
 export class UpdateHabitDto {
   @ApiProperty({ default: '' })

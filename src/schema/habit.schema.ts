@@ -4,12 +4,11 @@ import {
   HabitFrequencyEnum,
   HabitFrequencyPeriodEnum,
 } from '../enum/habit.enum';
-import { AbstractSchema } from './abstract.schema';
 
 export type HabitDocument = HydratedDocument<Habit>;
 
-@Schema()
-export class Habit extends AbstractSchema {
+@Schema({ timestamps: true })
+export class Habit {
   @Prop({ required: true })
   userId: string;
 
@@ -17,7 +16,34 @@ export class Habit extends AbstractSchema {
   title: string;
 
   @Prop({ required: true, default: 0 })
-  streak?: number;
+  streakDaily?: number;
+
+  @Prop({ default: '' })
+  streakDailyStartDate?: string;
+
+  @Prop({ default: '' })
+  streakDailyEndDate?: string;
+
+  @Prop({ required: true, default: 0 })
+  streakPeriod?: number;
+
+  @Prop({ default: '' })
+  streakPeriodStartDate?: string;
+
+  @Prop({ default: '' })
+  currentPeriodStartDate?: string;
+
+  @Prop({ default: '' })
+  currentPeriodEndDate?: string;
+
+  @Prop({ default: '' })
+  streakPeriodEndDate?: string;
+
+  @Prop({ default: '' })
+  lastEvaluatedPeriodEnd?: string;
+
+  @Prop({ default: 0 })
+  numberOfDoneThisPeriod?: number;
 
   @Prop({ required: true, enum: HabitFrequencyEnum })
   type: HabitFrequencyEnum;

@@ -19,14 +19,14 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '../../guard/auth/auth.guard';
 import { HabitService } from './habit.service';
-import { CreateHabitDto } from '../../dto/create-habit.dto';
+import { CreateHabitDto } from '../../dto/habit/create-habit.dto';
 import { Request, Response } from 'express';
 import { IUser } from '../../interface/user';
 import { CurrentUser } from '../../decorator/user.decorator';
-import { UpdateHabitDto } from '../../dto/update-habit.dto';
+import { UpdateHabitDto } from '../../dto/habit/update-habit.dto';
 
 @ApiBearerAuth()
-@ApiTags('Habits')
+@ApiTags('Habit')
 @UseGuards(AuthGuard)
 @Controller('habit')
 export class HabitController {

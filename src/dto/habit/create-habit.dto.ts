@@ -4,8 +4,8 @@ import { IsEnum, IsNotEmpty, IsString, ValidateIf, Min } from 'class-validator';
 import {
   HabitFrequencyEnum,
   HabitFrequencyPeriodEnum,
-} from '../enum/habit.enum';
-import { IHabit } from '../interface/habit';
+} from '../../enum/habit.enum';
+import { IHabit } from '../../interface/habit';
 
 export class CreateHabitDto {
   @ApiProperty()
