@@ -8,7 +8,7 @@ import { Response } from 'express';
 import { IUser } from '../../interface/user';
 
 @ApiBearerAuth()
-@ApiTags('HabitLog')
+@ApiTags('Habit Log')
 @UseGuards(AuthGuard)
 @Controller('habit-log')
 export class HabitLogController {

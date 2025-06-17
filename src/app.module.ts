@@ -5,6 +5,7 @@ import { HealthModule } from './module/health/health.module';
 import { MongoModule } from './module/mongo/mongo.module';
 import { HabitModule } from './module/habit/habit.module';
 import { HabitLogModule } from './module/habit-log/habit-log.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { HabitLogModule } from './module/habit-log/habit-log.module';
     MongoModule,
     HabitModule,
     HabitLogModule,
+    ScheduleModule.forRoot(),
   ],
   controllers: [],
   providers: [ApiConfigServices],
