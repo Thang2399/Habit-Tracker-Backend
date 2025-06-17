@@ -1,10 +1,10 @@
 import { HydratedDocument } from 'mongoose';
-import { AbstractSchema } from './abstract.schema';
-import { Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
-export type LogDocument = HydratedDocument<Log>;
+export type HabitLogDocument = HydratedDocument<HabitLog>;
 
-export class Log extends AbstractSchema {
+@Schema({ timestamps: true })
+export class HabitLog {
   @Prop({ required: true })
   userId: string;
 
@@ -21,4 +21,4 @@ export class Log extends AbstractSchema {
   mood?: string;
 }
 
-export const LogSchema = SchemaFactory.createForClass(Log);
+export const HabitLogSchema = SchemaFactory.createForClass(HabitLog);
