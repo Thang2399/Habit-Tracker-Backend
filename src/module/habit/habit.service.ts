@@ -13,11 +13,14 @@ import { CreateHabitDto } from '../../dto/habit/create-habit.dto';
 import { Response } from 'express';
 import { IUser } from '../../interface/user';
 import { UpdateHabitDto } from '../../dto/habit/update-habit.dto';
+import { GetListHabitsDto } from '../../dto/habit/get-list-habits.dto';
+import { PaginationService } from '../pagination/pagination.service';
 
 @Injectable()
 export class HabitService {
   constructor(
     @InjectModel(Habit.name) private habitModel: Model<HabitDocument>,
+    private paginationService: PaginationService,
   ) {}
 
   async createNewHabit(user: IUser, dto: CreateHabitDto, res: Response) {
@@ -39,6 +42,16 @@ export class HabitService {
       const habitRes = specificHabit.toObject();
       return res.json(habitRes);
     }
+  }
+
+  async getListHabits(user: IUser, query: GetListHabitsDto, res: Response) {
+    const listData = await this.paginationService.getPaginationData(
+      this.habitModel,
+      query,
+      user.userId,
+    )
+
+    return res.json(listData);
   }
 
   async updateHabit(id: string, dto: UpdateHabitDto, res: Response) {

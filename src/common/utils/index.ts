@@ -8,7 +8,7 @@ export const getToday = () => {
   return new Date().toISOString().split('T')[0]; // 'YYYY-MM-DD'
 };
 
-export const getTodayDateRange = () => {
+export const getTodayDateRange = (endDayHour = 23) => {
   const now = new Date(); // Always in UTC
   const start = new Date(
     Date.UTC(
@@ -26,7 +26,7 @@ export const getTodayDateRange = () => {
       now.getUTCFullYear(),
       now.getUTCMonth(),
       now.getUTCDate(),
-      23,
+      endDayHour,
       59,
       59,
       999,
@@ -55,7 +55,7 @@ export const getLastDay = (period: HabitFrequencyPeriodEnum) => {
   } else if (period === HabitFrequencyPeriodEnum.MONTH) {
     return getLastDayOfMonth();
   }
-}
+};
 
 function formatDate(date: Date): string {
   const year = date.getFullYear();
@@ -101,3 +101,9 @@ export function getPeriodWindow(
 
   throw new Error('Unsupported period type');
 }
+
+export function formatMessage(
+  template: string,
+  params: Record<string, string | number>
+): string {
+  return template.replace(/{(.*?)}/g, (_, key) => String(params[key] ?? ''));}

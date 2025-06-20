@@ -15,15 +15,16 @@ import {
   Req,
   Param,
   Delete,
-  Put,
+  Put, Query,
 } from '@nestjs/common';
 import { AuthGuard } from '../../guard/auth/auth.guard';
 import { HabitService } from './habit.service';
 import { CreateHabitDto } from '../../dto/habit/create-habit.dto';
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import { IUser } from '../../interface/user';
 import { CurrentUser } from '../../decorator/user.decorator';
 import { UpdateHabitDto } from '../../dto/habit/update-habit.dto';
+import { GetListHabitsDto } from '../../dto/habit/get-list-habits.dto';
 
 @ApiBearerAuth()
 @ApiTags('Habit')
@@ -60,6 +61,16 @@ export class HabitController {
   @Get('/:id')
   async getDetailHabit(@Param('id') id: string, @Res() res: Response) {
     return this.habitService.getDetailHabit(id, res);
+  }
+
+  @ApiOperation({ description: 'Get list Habits' })
+  @Get('')
+  async getListHabits(
+    @CurrentUser() user: IUser,
+    @Query() query: GetListHabitsDto,
+    @Res() res: Response,
+  ) {
+    return this.habitService.getListHabits(user, query, res)
   }
 
   @ApiOperation({ description: 'Delete a Habit' })
